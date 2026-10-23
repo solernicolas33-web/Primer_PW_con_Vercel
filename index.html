@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tarjeta de presentación personal de un estudiante de programación." />
+  <title>Mi tarjeta de presentación</title>
+
+  <style>
+    /* ---------- Reset básico ---------- */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ---------- Variables de diseño ---------- */
+    :root {
+      --color-fondo: #eef2f7;
+      --color-fondo-tarjeta: #ffffff;
+      --color-texto: #1f2937;
+      --color-texto-suave: #5b6675;
+      --color-primario: #2563eb;
+      --color-primario-oscuro: #1d4ed8;
+      --color-borde: #e2e8f0;
+      --sombra-tarjeta: 0 20px 45px -20px rgba(15, 23, 42, 0.35);
+      --radio: 16px;
+      --transicion: 200ms ease;
+    }
+
+    /* ---------- Estilos generales ---------- */
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem 1.25rem;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--color-texto);
+      background:
+        radial-gradient(1200px 600px at 15% 0%, #dbeafe 0%, transparent 60%),
+        radial-gradient(900px 500px at 100% 100%, #ede9fe 0%, transparent 55%),
+        var(--color-fondo);
+    }
+
+    /* ---------- Tarjeta ---------- */
+    .tarjeta {
+      width: 100%;
+      max-width: 34rem;
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      background-color: var(--color-fondo-tarjeta);
+      border: 1px solid var(--color-borde);
+      border-radius: var(--radio);
+      box-shadow: var(--sombra-tarjeta);
+      text-align: center;
+    }
+
+    /* ---------- Encabezado ---------- */
+    .tarjeta__avatar {
+      display: grid;
+      place-items: center;
+      width: 5rem;
+      height: 5rem;
+      margin: 0 auto 1.25rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #60a5fa, #2563eb);
+      color: #ffffff;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+
+    .tarjeta__nombre {
+      font-size: clamp(1.5rem, 4vw, 1.9rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .tarjeta__rol {
+      margin-top: 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-primario);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ---------- Descripción ---------- */
+    .tarjeta__descripcion {
+      margin-top: 1.25rem;
+      color: var(--color-texto-suave);
+      font-size: 1rem;
+    }
+
+    /* ---------- Tecnologías ---------- */
+    .tecnologias {
+      margin-top: 1.75rem;
+    }
+
+    .tecnologias__titulo {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-texto-suave);
+    }
+
+    .tecnologias__lista {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+      list-style: none;
+    }
+
+    .tecnologias__item {
+      padding: 0.35rem 0.85rem;
+      border: 1px solid var(--color-borde);
+      border-radius: 999px;
+      background-color: #f8fafc;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #334155;
+    }
+
+    /* ---------- Botón de contacto ---------- */
+    .tarjeta__acciones {
+      margin-top: 2rem;
+    }
+
+    .boton {
+      display: inline-block;
+      padding: 0.8rem 1.9rem;
+      border-radius: 999px;
+      background-color: var(--color-primario);
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 10px 20px -10px rgba(37, 99, 235, 0.9);
+      transition: background-color var(--transicion), transform var(--transicion), box-shadow var(--transicion);
+    }
+
+    .boton:hover {
+      background-color: var(--color-primario-oscuro);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px -10px rgba(37, 99, 235, 0.95);
+    }
+
+    .boton:active {
+      transform: translateY(0);
+    }
+
+    .boton:focus-visible {
+      outline: 3px solid #93c5fd;
+      outline-offset: 3px;
+    }
+
+    /* ---------- Pie de página ---------- */
+    .pie {
+      font-size: 0.8rem;
+      color: var(--color-texto-suave);
+      text-align: center;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 480px) {
+      body {
+        padding: 1.25rem 1rem;
+      }
+
+      .tarjeta {
+        padding: 1.5rem 1.25rem;
+      }
+
+      .boton {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    /* ---------- Accesibilidad: menos movimiento ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      .boton {
+        transition: none;
+      }
+
+      .boton:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <article class="tarjeta" aria-labelledby="titulo-tarjeta">
+      <header>
+        <div class="tarjeta__avatar" aria-hidden="true">EA</div>
+        <h1 class="tarjeta__nombre" id="titulo-tarjeta">Estudiante de Programación</h1>
+        <p class="tarjeta__rol">Desarrollo Frontend</p>
+      </header>
+
+      <p class="tarjeta__descripcion">
+        Hola, soy estudiante de programación y estoy dando mis primeros pasos en el
+        desarrollo web. Me interesa crear interfaces limpias, accesibles y adaptables
+        a cualquier dispositivo.
+      </p>
+
+      <section class="tecnologias" aria-labelledby="titulo-tecnologias">
+        <h2 class="tecnologias__titulo" id="titulo-tecnologias">Tecnologías que uso</h2>
+        <ul class="tecnologias__lista">
+          <li class="tecnologias__item">HTML</li>
+          <li class="tecnologias__item">CSS</li>
+          <li class="tecnologias__item">Git</li>
+          <li class="tecnologias__item">Vercel</li>
+        </ul>
+      </section>
+
+      <div class="tarjeta__acciones">
+        <a class="boton" href="mailto:contacto@ejemplo.com">Contactame</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="pie">
+    <p>&copy; 2026 &middot; Hecho como primer proyecto web.</p>
+  </footer>
+</body>
+</html>
